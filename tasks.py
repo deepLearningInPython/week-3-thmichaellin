@@ -62,11 +62,11 @@ def convolve_1d(input_array: np.ndarray,
         np.ndarray: Convolved array.
     """
 
-    output_array = np.empty(compute_output_size_1d(input_array,
+    output_array = np.zeros(compute_output_size_1d(input_array,
                                                    kernel_array))
     kernel_len = kernel_array.size
     for i in range(output_array.size):
-        output_array[i] = np.sum(input_array[i: i + kernel_len] *
+        output_array[i] = np.dot(input_array[i: i + kernel_len],
                                  (kernel_array))
 
     return output_array
@@ -135,15 +135,15 @@ def convolute_2d(input_matrix: np.ndarray,
         np.ndarray: Convolved matrix.
     """
 
-    output_matrix = np.empty(compute_output_size_2d(input_matrix,
+    output_matrix = np.zeros(compute_output_size_2d(input_matrix,
                                                     kernel_matrix))
     kernel_len_x = kernel_matrix.shape[0]
     kernel_len_y = kernel_matrix.shape[1]
 
     for i in range(output_matrix.shape[0]):
         for j in range(output_matrix.shape[1]):
-            output_matrix[i, j] = np.sum(input_matrix[i: i + kernel_len_x,
-                                                      j: j + kernel_len_y] *
+            output_matrix[i, j] = np.dot(input_matrix[i: i + kernel_len_x,
+                                                      j: j + kernel_len_y],
                                          kernel_matrix)
     return output_matrix
 
