@@ -142,8 +142,8 @@ def convolute_2d(input_matrix: np.ndarray,
 
     for i in range(output_matrix.shape[0]):
         for j in range(output_matrix.shape[1]):
-            output_matrix[i, j] = np.dot(input_matrix[i: i + kernel_len_x,
-                                                      j: j + kernel_len_y],
+            output_matrix[i, j] = np.sum(input_matrix[i: i + kernel_len_x,
+                                                      j: j + kernel_len_y] *
                                          kernel_matrix)
     return output_matrix
 
